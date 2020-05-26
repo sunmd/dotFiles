@@ -4,8 +4,8 @@ if has("syntax")
 endif
 
 " 设置行号
-:set number
-
+set number
+set relativenumber
 " 打开文件类型侦测
 filetype on
 
@@ -22,6 +22,10 @@ set nocompatible
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set expandtab
+
+" 设置vue和js和html和css的缩进格式
+autocmd FileType vue,javascript, html, css setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " 设置粘贴板
 set clipboard+=unnamedplus
@@ -75,7 +79,7 @@ Plug 'tmhedberg/SimpylFold'
 " 自动补全功能
 "Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Use release branch (Recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 
 "the scheme add
 Plug 'morhetz/gruvbox'
@@ -92,7 +96,9 @@ Plug 'tpope/vim-commentary'
 " tpope
 Plug 'tpope/vim-unimpaired'
 
-" student
+" Radical.vim是一个Vim插件，可以在编程时遇到的数字表示之间进行转换，这是十进制，十六进制，八进制和二进制表示的补充。
+" crd, crx, cro, crb convert the number under the cursor to decimal, hex,
+" octal, binary, respectively.
 Plug 'glts/vim-radical'
 
 " repeat
@@ -114,7 +120,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'mhinz/vim-startify'
 
 " add <leader>td todo list
-Plug 'vim-scripts/TaskList.vim' 
+" Plug 'vim-scripts/TaskList.vim' 
 
 " airline 
 Plug 'vim-airline/vim-airline'
@@ -144,9 +150,17 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>1 :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>s :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>g :TagbarToggle<CR>
-nnoremap <leader>m :MBEToggleAll<CR>
+" nnoremap <leader>m :MBEToggleAll<CR>
 
 " tags
+" 更新一下ctags用最新版本的ctags universal ctags 
+let g:gutentags_ctags_executable = 'exctags'
+
+" 如果使用 universal ctags 需要增加下面一行,用途为止,应该时切换格式,目前不用
+" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+" 添加这个选项可以识别html的标签用途
+" let g:gutentags_ctags_extra_args = ['--extras = + g']
+
 " gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project', 'Makefile', 'tags']
 
@@ -156,6 +170,12 @@ let g:gutentags_ctags_tagfile = '.tags'
 " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
 let s:vim_tags = expand('~/.config/nvim/tags')
 let g:gutentags_cache_dir = s:vim_tags
+
+" 将非必要的模块比较tags生成
+let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
+
+" 设置状态
+set statusline+=%{gutentags#statusline()}
 
 " airline default setting
 let g:airline#extensions#tabline#enabled = 1
@@ -341,5 +361,16 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" move the diagnostic location
 nmap <silent> <Leader>j <Plug>(coc-diagnostic-next-error)
 nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev-error)
+"
+" popup
+" nmap <Leader>t <Plug>(coc-translator-p)
+" vmap <Leader>t <Plug>(coc-translator-pv)
+" echo
+nmap <Leader>e <Plug>(coc-translator-e)
+vmap <Leader>e <Plug>(coc-translator-ev)
+" replace
+" nmap <Leader>r <Plug>(coc-translator-r)
+" vmap <Leader>r <Plug>(coc-translator-rv)
