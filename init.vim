@@ -32,7 +32,7 @@ set shiftwidth=4
 set expandtab
 
 " 设置vue和js和html和css的缩进格式
-autocmd FileType vue,javascript, html, css setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType vue,javascript,html,css setlocal expandtab| set shiftwidth=2| set softtabstop=2| set tabstop=2
 
 " 设置文件编码
 set fileencodings=utf-8,ucs-bom,cp936,big5
@@ -51,6 +51,14 @@ set textwidth=79
 " 设置自动缩进
 set autoindent 
 set fileformat=unix 
+
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
 
 " 设置代码折叠za
 " Enable folding
@@ -367,6 +375,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" move the diagnostic location
+nmap <silent> <Leader>j <Plug>(coc-diagnostic-next-error)
+nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev-error)
 
 " popup
 " nmap <Leader>t <Plug>(coc-translator-p)
