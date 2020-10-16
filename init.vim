@@ -41,7 +41,7 @@ set fileencoding=utf-8
 " 高亮显示当前行和列
 set cursorline
 " set cursorcolumn
-"
+
 " 设置虚拟的vertual line
 " set colorcolumn=81
 
@@ -50,6 +50,7 @@ set textwidth=79
 
 " 设置自动缩进
 set autoindent 
+set smartindent
 set fileformat=unix 
 
 " navigate chunks of current buffer
@@ -58,12 +59,19 @@ nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
 nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-nmap gc <Plug>(coc-git-commit)
+" nmap gc <Plug>(coc-git-commit)
+" :nmap <leader>x :CocCommand explorer<CR>
 
 " 设置代码折叠za
 " Enable folding
 " set foldmethod=indent
 " set foldlevel=99
+
+" 设置字体大小
+command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
+command! -bar -nargs=0 Smaller :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
+nnoremap <leader>-        :Smaller<CR>
+nnoremap <leader>=        :Bigger<CR>
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -125,18 +133,12 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 " open history
 Plug 'mhinz/vim-startify'
 
-" add <leader>td todo list
-" Plug 'vim-scripts/TaskList.vim' 
-
 " airline 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " line up text
 Plug 'godlygeek/tabular'
-
-" buff explorer
-" Plug 'fholgado/minibufexpl.vim'
 
 " Initialize plugin system
 
