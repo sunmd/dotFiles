@@ -67,11 +67,14 @@ nmap gs <Plug>(coc-git-chunkinfo)
 " set foldmethod=indent
 " set foldlevel=99
 
+" autocmd FileType markdown let b:coc_pairs_disabled = ['`']
+" autocmd FileType vim let b:coc_pairs_disabled = ['"']
+
 " 设置字体大小
-command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
-command! -bar -nargs=0 Smaller :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
-nnoremap <leader>-        :Smaller<CR>
-nnoremap <leader>=        :Bigger<CR>
+" command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
+" command! -bar -nargs=0 Smaller :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
+" nnoremap <leader>-        :Smaller<CR>
+" nnoremap <leader>=        :Bigger<CR>
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -169,12 +172,6 @@ nnoremap <silent> <leader>1 :edit ~\AppData\Local\nvim\init.vim<CR>
 nnoremap <leader>s :source ~\AppData\Local\nvim\init.vim<CR>
 nnoremap <leader>g :TagbarToggle<CR>
 " nnoremap <leader>m :MBEToggleAll<CR>
-
-" minibufexpl setting 
-" let g:miniBufExplMapWindowNavVim = 1
-" let g:miniBufExplMapWindowNavArrows = 1
-" let g:miniBufExplMapCTabSwitchBufs = 1
-" let g:miniBufExplModSelTarget = 1
 
 " tags
 " 更新一下ctags用最新版本的ctags universal ctags 
