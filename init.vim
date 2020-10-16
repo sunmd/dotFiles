@@ -22,16 +22,15 @@ set nocompatible
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" 将tab自动转为空格
 set expandtab
 
 " 设置vue和js和html和css的缩进格式
-autocmd FileType vue,javascript, html, css setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType vue,javascript,html,css set expandtab |set  shiftwidth=2| set softtabstop=2| set tabstop=2
 
 " 设置粘贴板
 set clipboard+=unnamedplus
 
-" 将tab自动转为空格
-set expandtab
 
 " 设置文件编码
 set fileencodings=utf-8,ucs-bom,cp936,big5
@@ -50,6 +49,9 @@ set textwidth=79
 " 设置自动缩进
 set autoindent 
 set fileformat=unix 
+
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
 
 " 设置代码折叠za
 " Enable folding
@@ -172,7 +174,7 @@ let s:vim_tags = expand('~/.config/nvim/tags')
 let g:gutentags_cache_dir = s:vim_tags
 
 " 将非必要的模块比较tags生成
-let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
+let g:gutentags_ctags_exclude = ['*.min.js', '*.min.css', 'build', 'vendor', '.git', 'node_modules', '*.vim/bundle/*']
 
 " 设置状态
 set statusline+=%{gutentags#statusline()}
