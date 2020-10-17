@@ -5,7 +5,10 @@ endif
 
 " 设置行号
 set number
+
+" 设置相对行号
 set relativenumber
+
 " 打开文件类型侦测
 filetype on
 
@@ -15,6 +18,8 @@ filetype plugin on
 " 开启实时搜索并且对大小写不敏感
 set incsearch
 set ignorecase
+
+" 开启实时搜索并且对大小写不敏感
 " 关闭兼容模式
 set nocompatible
 
@@ -22,15 +27,15 @@ set nocompatible
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
 " 将tab自动转为空格
 set expandtab
 
 " 设置vue和js和html和css的缩进格式
-autocmd FileType vue,javascript,html,css set expandtab |set  shiftwidth=2| set softtabstop=2| set tabstop=2
+autocmd FileType vue,javascript,html,css setlocal expandtab |set  shiftwidth=2| set softtabstop=2| set tabstop=2
 
 " 设置粘贴板
 set clipboard+=unnamedplus
-
 
 " 设置文件编码
 set fileencodings=utf-8,ucs-bom,cp936,big5
@@ -39,7 +44,7 @@ set fileencoding=utf-8
 " 高亮显示当前行和列
 set cursorline
 " set cursorcolumn
-"
+
 " 设置虚拟的vertual line
 " set colorcolumn=81
 
@@ -59,6 +64,16 @@ nmap gs <Plug>(coc-git-chunkinfo)
 " set foldmethod=indent
 " set foldlevel=99
 
+" 设置括号的特殊情况
+autocmd FileType markdown let b:coc_pairs_disabled = ['`']
+autocmd FileType vim let b:coc_pairs_disabled = ['"']
+
+" 设置字体大小
+" command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
+" command! -bar -nargs=0 Smaller :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
+" nnoremap <leader>-        :Smaller<CR>
+" nnoremap <leader>=        :Bigger<CR>
+
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -71,7 +86,6 @@ Plug 'tpope/vim-surround'
 
 " 文件系统树
 Plug 'scrooloose/nerdtree'
-
 
 " 自动引号&括号补全
 " Plug 'jiangmiao/auto-pairs'
@@ -88,6 +102,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 Plug 'morhetz/gruvbox'
 
 " git
+
 Plug 'tpope/vim-fugitive'
 
 " <c-a> <c-x> time alter
@@ -103,6 +118,10 @@ Plug 'tpope/vim-unimpaired'
 " crd, crx, cro, crb convert the number under the cursor to decimal, hex,
 " octal, binary, respectively.
 Plug 'glts/vim-radical'
+
+" clip
+"Plug 'svermeulen/vim-easyclip'
+
 
 " repeat
 Plug 'tpope/vim-repeat'
@@ -123,9 +142,14 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" line up text
+"Plug 'godlygeek/tabular'
+
 " Initialize plugin system
+
 call plug#end()
 
+" 注释代码的设置
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
@@ -173,7 +197,7 @@ let g:gutentags_ctags_exclude = ['*.min.js', '*.min.css', 'build', 'vendor', '.g
 " 设置状态
 set statusline+=%{gutentags#statusline()}
 
-" airline default setting
+" 启用buf管理器airline上开启配置
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -360,7 +384,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " move the diagnostic location
 nmap <silent> <Leader>j <Plug>(coc-diagnostic-next-error)
 nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev-error)
-"
+
 " popup
 " nmap <Leader>t <Plug>(coc-translator-p)
 " vmap <Leader>t <Plug>(coc-translator-pv)
