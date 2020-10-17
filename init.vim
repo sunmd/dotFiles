@@ -48,6 +48,7 @@ set textwidth=79
 
 " 设置自动缩进
 set autoindent 
+set smartindent
 set fileformat=unix 
 
 " show chunk diff at current position
@@ -73,7 +74,7 @@ Plug 'scrooloose/nerdtree'
 
 
 " 自动引号&括号补全
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 
 " 代码折叠插件
 Plug 'tmhedberg/SimpylFold'
@@ -106,9 +107,6 @@ Plug 'glts/vim-radical'
 " repeat
 Plug 'tpope/vim-repeat'
 
-" buffer navigate
-" Plug 'fholgado/minibufexpl.vim'
-
 " tagbar show tag list
 Plug 'majutsushi/tagbar'
 
@@ -120,9 +118,6 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " open history
 Plug 'mhinz/vim-startify'
-
-" add <leader>td todo list
-" Plug 'vim-scripts/TaskList.vim' 
 
 " airline 
 Plug 'vim-airline/vim-airline'
@@ -152,7 +147,6 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>1 :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>s :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>g :TagbarToggle<CR>
-" nnoremap <leader>m :MBEToggleAll<CR>
 
 " tags
 " 更新一下ctags用最新版本的ctags universal ctags 
